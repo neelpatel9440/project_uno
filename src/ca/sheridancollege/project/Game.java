@@ -16,16 +16,18 @@ import java.util.ArrayList;
  */
 public abstract class Game {
 
-    private final String name;//the title of the game
-    private ArrayList<Player> players;// the players of the game
+    private final String name; // The title of the game
+    private ArrayList<Player> players; // The players of the game
+    private int currentPlayerIndex; // Index of the current player
 
     public Game(String name) {
         this.name = name;
-        players = new ArrayList();
+        players = new ArrayList<>();
+        currentPlayerIndex = 0;
     }
 
     /**
-     * @return the name
+     * @return the name of the game
      */
     public String getName() {
         return name;
@@ -39,10 +41,34 @@ public abstract class Game {
     }
 
     /**
-     * @param players the players of this game
+     * Add a player to the game
+     * @param player the player to add
      */
-    public void setPlayers(ArrayList<Player> players) {
-        this.players = players;
+    public void addPlayer(Player player) {
+        players.add(player);
+    }
+
+    /**
+     * Start the game
+     */
+    public void start() {
+        System.out.println("Starting " + name + " game...");
+        play();
+        declareWinner();
+    }
+
+    /**
+     * @return the current player
+     */
+    public Player getCurrentPlayer() {
+        return players.get(currentPlayerIndex);
+    }
+
+    /**
+     * Move to the next player's turn
+     */
+    public void nextTurn() {
+        currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
     }
 
     /**
@@ -55,4 +81,4 @@ public abstract class Game {
      */
     public abstract void declareWinner();
 
-}//end class
+}

@@ -17,12 +17,16 @@ import java.util.Collections;
  */
 public class GroupOfCards {
 
+    static UnoValue WILD;
+    static UnoValue WILD_DRAW_FOUR;
+
     //The group of cards, stored in an ArrayList
     private ArrayList<Card> cards;
     private int size;//the size of the grouping
 
     public GroupOfCards(int size) {
         this.size = size;
+        cards = new ArrayList<>();
     }
 
     /**
@@ -51,5 +55,11 @@ public class GroupOfCards {
     public void setSize(int size) {
         this.size = size;
     }
-
-}//end class
+    
+    /**
+     * An enum representing values in Uno.
+     */
+    public enum UnoValue {
+        ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE,SKIP,REVERSE,DRAW_TWO
+    }
+}

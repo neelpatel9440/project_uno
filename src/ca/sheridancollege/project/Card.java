@@ -11,15 +11,30 @@ package ca.sheridancollege.project;
  *
  * @author dancye
  */
-public abstract class Card {
-    //default modifier for child classes
+public class Card {
 
-    /**
-     * Students should implement this method for their specific children classes
-     *
-     * @return a String representation of a card. Could be an UNO card, a regular playing card etc.
-     */
+    private UnoColor color;
+    private GroupOfCards.UnoValue value;
+
+    public Card(UnoColor color, GroupOfCards.UnoValue value) {
+        this.color = color;
+        this.value = value;
+    }
+
+    public UnoColor getColor() {
+        return color;
+    }
+
+    public GroupOfCards.UnoValue getValue() {
+        return value;
+    }
+
+    public boolean matches(Card otherCard) {
+        return color == otherCard.getColor() || value == otherCard.getValue();
+    }
+
     @Override
-    public abstract String toString();
-
+    public String toString() {
+        return value + " of " + color;
+    }
 }
